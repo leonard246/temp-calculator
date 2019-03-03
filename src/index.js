@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 function BoilingVerdict(props) {
-    if(props.celcius >= 100)
+    if(props.celsius >= 100)
         return (<p>The water will boil</p>);
     
     return (<p>The water will not boil</p>);
@@ -26,12 +26,12 @@ class Calculator extends React.Component {
         const temperature = this.state.temperature;
         return (
             <div>
-                <legend>Enter temperature (celcius):</legend>
+                <legend>Enter temperature (celsius):</legend>
                 <input
                     value={temperature}
                     onChange={this.handlechange} />
                 <BoilingVerdict 
-                    celcius={parseFloat(temperature)} />
+                    celsius={parseFloat(temperature)} />
             </div>
         );
     }
