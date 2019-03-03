@@ -1,12 +1,41 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+function BoilingVerdict(props) {
+    if(props.celcius >= 100)
+        return (<p>The water will boil</p>);
+    
+    return (<p>The water will not boil</p>);
+}
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+class Calculator extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            temperature: '',
+        }; 
+        
+        this.handlechange = this.handlechange.bind(this);
+    }
+
+    handlechange(e) {
+        this.setState({temperature: e.target.value});
+    }
+
+    render() {
+        const temperature = this.state.temperature;
+        return (
+            <div>
+                <legend>Enter temperature (celcius):</legend>
+                <input
+                    value={temperature}
+                    onChange={this.handlechange} />
+                <BoilingVerdict 
+                    celcius={parseFloat(temperature)} />
+            </div>
+        );
+    }
+}
+
+
+ReactDOM.render(<Calculator />,document.getElementById('root'));
